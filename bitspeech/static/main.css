@@ -36,3 +36,112 @@ body{
   background-position: center;
   background-size: cover;
 }
+
+:root {
+  --head-size: 160px;
+  --total-cat-height: 130px;
+}
+.cat {
+  position: fixed;
+  bottom: -70px;
+  left: 40px;
+  background-color: rgba(0, 0, 255, 0);
+  width: var(--head-size);
+  height: var(--total-cat-height);
+  animation-name: move-cat;
+  animation-duration: 10s;
+  animation-iteration-count: 10;
+  animation-timing-function: ease;
+  transform: rotate(-6deg);
+}
+
+.paw {
+  position: absolute;
+  width: 40px;
+  bottom: -40px;
+  left: 0;
+  z-index: 2;
+  animation-name: move-paws;
+  animation-duration: 10s;
+  animation-timing-function: ease;
+  animation-iteration-count: 10;
+}
+
+.paw--left {
+  transform: rotate(4deg);
+  margin-bottom: 10px;
+}
+
+.paw--right {
+  transform: scaleX(-1);
+  right: 10px;
+  left: unset;
+}
+
+.head {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--head-size);
+  z-index: 1;
+}
+
+@keyframes move-cat {
+  0% {
+    bottom: -100px;
+  }
+  
+  10% {
+    bottom: -70px;
+  }
+  
+  20% {
+    bottom: -70px;
+  }
+  
+  60% {
+    bottom: -70px;
+  }
+  
+  75% {
+    bottom: -30px;
+  }
+  
+  90% {
+    bottom: -30px;
+  }
+  
+  100% {
+    bottom: -100px;
+  }
+}
+
+@keyframes move-paws {
+  0% {
+    bottom: -40px;
+  }
+  
+  20% {
+    bottom: -40px;
+  }
+  
+  40% {
+    bottom: -6px;
+  }
+  
+  70% {
+    bottom: -6px;
+  }
+  
+  80% {
+    bottom: -40px;
+  }
+  
+  90% {
+    bottom: -6px;
+  }
+
+  100% {
+    bottom: -6px;
+  }
+}
