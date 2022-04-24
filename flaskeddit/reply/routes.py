@@ -15,8 +15,7 @@ def reply(name, title):
     Route for creating a reply. On a GET request, it returns the reply creation form.
     On a POST request, it handles creating a reply.
     """
-    post = post_service.get_post(title, name)
-    if post:
+    if post := post_service.get_post(title, name):
         form = ReplyForm()
         if form.validate_on_submit():
             reply_service.create_reply(form.reply.data, post, current_user)
@@ -37,8 +36,7 @@ def update_reply(name, title, reply_id):
     Route for updating a reply. On a GET request, it returns the reply update form. On
     a POST request, it handles updating a reply.
     """
-    reply = reply_service.get_reply(reply_id)
-    if reply:
+    if reply := reply_service.get_reply(reply_id):
         if reply.user_id != current_user.id:
             return redirect(url_for("post.post", name=name, title=title))
         form = ReplyForm()
@@ -63,8 +61,7 @@ def delete_reply(name, title, reply_id):
     """
     Route that handles deleting a reply.
     """
-    reply = reply_service.get_reply(reply_id)
-    if reply:
+    if reply := reply_service.get_reply(reply_id):
         if reply.user_id != current_user.id:
             return redirect(url_for("post.post", name=name, title=title))
         reply_service.delete_reply(reply)
@@ -83,8 +80,7 @@ def upvote_reply(name, title, reply_id):
     """
     Route that handles upvoting a reply as the current user.
     """
-    reply = reply_service.get_reply(reply_id)
-    if reply:
+    if reply := reply_service.get_reply(reply_id):
         reply_service.upvote_reply(reply_id, current_user.id)
         return redirect(request.referrer)
     else:
@@ -100,8 +96,7 @@ def downvote_reply(name, title, reply_id):
     """
     Route that handles downvoting a reply as the current user.
     """
-    reply = reply_service.get_reply(reply_id)
-    if reply:
+    if reply := reply_service.get_reply(reply_id):
         reply_service.downvote_reply(reply_id, current_user.id)
         return redirect(request.referrer)
     else:

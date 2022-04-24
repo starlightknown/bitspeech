@@ -6,14 +6,13 @@ def get_post(title, community_name):
     """
     Gets a post from a specified community by title from the database.
     """
-    post = (
+    return (
         db.session.query(Post)
         .join(Community, Post.community_id == Community.id)
         .filter(Post.title == title)
         .filter(Community.name == community_name)
         .first()
     )
-    return post
 
 
 def get_post_with_votes(title, community_name):
@@ -21,7 +20,7 @@ def get_post_with_votes(title, community_name):
     Gets a post with vote information from a specified community by title from the
     database.
     """
-    post = (
+    return (
         db.session.query(
             Post.id,
             Post.title,
@@ -41,7 +40,6 @@ def get_post_with_votes(title, community_name):
         .group_by(Post.id, AppUser.id, Community.id)
         .first()
     )
-    return post
 
 
 def create_post(title, post, community, user):
@@ -76,7 +74,7 @@ def get_post_replies(post_id, page, ordered_by_votes):
     ordered_by = Reply.date_created.desc()
     if ordered_by_votes:
         ordered_by = db.literal_column("votes").desc()
-    replies = (
+    return (
         db.session.query(
             Reply.id,
             Reply.reply,
@@ -92,15 +90,13 @@ def get_post_replies(post_id, page, ordered_by_votes):
         .order_by(ordered_by)
         .paginate(page=page, per_page=5)
     )
-    return replies
 
 
 def get_post_vote(post_id, user_id):
     """
     Gets a specific user's vote on a post the database.
     """
-    post_vote = PostVote.query.filter_by(user_id=user_id, post_id=post_id).first()
-    return post_vote
+    return PostVote.query.filter_by(user_id=user_id, post_id=post_id).first()
 
 
 def upvote_post(post_id, user_id):

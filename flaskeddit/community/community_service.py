@@ -6,8 +6,7 @@ def get_community(name):
     """
     Gets a community by name from the database.
     """
-    community = Community.query.filter_by(name=name).first()
-    return community
+    return Community.query.filter_by(name=name).first()
 
 
 def create_community(name, description, user):
@@ -42,7 +41,7 @@ def get_community_posts(community_id, page, ordered_by_votes):
     ordered_by = Post.date_created.desc()
     if ordered_by_votes:
         ordered_by = db.literal_column("votes").desc()
-    posts = (
+    return (
         db.session.query(
             Post.title,
             Post.post,
@@ -57,17 +56,15 @@ def get_community_posts(community_id, page, ordered_by_votes):
         .order_by(ordered_by)
         .paginate(page=page, per_page=5)
     )
-    return posts
 
 
 def get_community_member(community_id, user_id):
     """
     Gets a community membership by community and user from the database.
     """
-    community_member = CommunityMember.query.filter_by(
+    return CommunityMember.query.filter_by(
         community_id=community_id, user_id=user_id
     ).first()
-    return community_member
 
 
 def create_community_member(community, user):

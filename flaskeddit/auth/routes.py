@@ -31,10 +31,9 @@ def login():
         return redirect(url_for("feed.feed"))
     form = LoginForm()
     if form.validate_on_submit():
-        login_successful = auth_service.log_in_user(
+        if login_successful := auth_service.log_in_user(
             form.username.data, form.password.data
-        )
-        if login_successful:
+        ):
             flash("Successfully logged in.", "primary")
             next_location = request.args.get("next")
             if next_location is None or not next_location.startswith("/"):

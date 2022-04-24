@@ -12,8 +12,7 @@ def post(name, title):
     Route for page displaying a post and its replies sorted by date created.
     """
     page = int(request.args.get("page", 1))
-    post = post_service.get_post_with_votes(title, name)
-    if post:
+    if post := post_service.get_post_with_votes(title, name):
         replies = post_service.get_post_replies(post.id, page, False)
         return render_template("post.html", tab="recent", post=post, replies=replies)
     else:
@@ -26,8 +25,7 @@ def top_post(name, title):
     Route for page displaying a post and its replies sorted by upvotes.
     """
     page = int(request.args.get("page", 1))
-    post = post_service.get_post_with_votes(title, name)
-    if post:
+    if post := post_service.get_post_with_votes(title, name):
         replies = post_service.get_post_replies(post.id, page, True)
         return render_template("post.html", tab="top", post=post, replies=replies)
     else:
@@ -41,8 +39,7 @@ def create_post(name):
     Route for creating a post. On a GET request, it returns the post creation form. On
     a POST request, it handles creating a post.
     """
-    community = community_service.get_community(name)
-    if community:
+    if community := community_service.get_community(name):
         form = PostForm()
         form.community_id.data = community.id
         if form.validate_on_submit():
@@ -65,8 +62,7 @@ def update_post(name, title):
     Route for updating a post. On a GET request, it returns the post update form. On a
     POST request, it handles updating a post.
     """
-    post = post_service.get_post(title, name)
-    if post:
+    if post := post_service.get_post(title, name):
         if post.user_id != current_user.id:
             return redirect(url_for("post.post", name=name, title=title))
         form = UpdatePostForm()
@@ -88,8 +84,7 @@ def delete_post(name, title):
     """
     Route that handles deleting a post.
     """
-    post = post_service.get_post(title, name)
-    if post:
+    if post := post_service.get_post(title, name):
         if post.user_id != current_user.id:
             return redirect(url_for("post.post", name=name, title=title))
         post_service.delete_post(post)
@@ -107,8 +102,7 @@ def upvote_post(name, title):
     """
     Route that handles upvoting a post as the current user.
     """
-    post = post_service.get_post(title, name)
-    if post:
+    if post := post_service.get_post(title, name):
         post_service.upvote_post(post.id, current_user.id)
         return redirect(request.referrer)
     else:
@@ -123,8 +117,7 @@ def downvote_post(name, title):
     """
     Route that handles downvoting a post as the current user.
     """
-    post = post_service.get_post(title, name)
-    if post:
+    if post := post_service.get_post(title, name):
         post_service.downvote_post(post.id, current_user.id)
         return redirect(request.referrer)
     else:

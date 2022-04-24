@@ -11,8 +11,7 @@ def community(name):
     Route for page displaying a community and its posts sorted by date created.
     """
     page = int(request.args.get("page", 1))
-    community = community_service.get_community(name)
-    if community:
+    if community := community_service.get_community(name):
         posts = community_service.get_community_posts(community.id, page, False)
         community_member = None
         if current_user.is_authenticated:
@@ -36,8 +35,7 @@ def top_community(name):
     Route for page displaying a community and its posts sorted by number of upvotes.
     """
     page = int(request.args.get("page", 1))
-    community = community_service.get_community(name)
-    if community:
+    if community := community_service.get_community(name):
         posts = community_service.get_community_posts(community.id, page, True)
         community_member = None
         if current_user.is_authenticated:
@@ -79,8 +77,7 @@ def update_community(name):
     Route for updating a community description. On a GET request, it returns the update
     community form. On a POST request, it processes the community update.
     """
-    community = community_service.get_community(name)
-    if community:
+    if community := community_service.get_community(name):
         if community.user_id != current_user.id:
             return redirect(url_for("community.community", name=name))
         form = UpdateCommunityForm()
@@ -100,8 +97,7 @@ def delete_community(name):
     """
     Route that handles deleting a community.
     """
-    community = community_service.get_community(name)
-    if community:
+    if community := community_service.get_community(name):
         if community.user_id != current_user.id:
             return redirect(url_for("community.community", name=name))
         community_service.delete_community(community)
@@ -117,12 +113,11 @@ def join_community(name):
     """
     Route that handles adding the current user as a community member.
     """
-    community = community_service.get_community(name)
-    if community:
+    if community := community_service.get_community(name):
         community_member = community_service.get_community_member(
             community.id, current_user.id
         )
-        if community_member == None:
+        if community_member is None:
             community_service.create_community_member(community, current_user)
         flash("Successfully joined community.", "primary")
         return redirect(url_for("community.community", name=community.name))
@@ -136,12 +131,10 @@ def leave_community(name):
     """
     Route that handles removing the current user as a community member.
     """
-    community = community_service.get_community(name)
-    if community:
-        community_member = community_service.get_community_member(
+    if community := community_service.get_community(name):
+        if community_member := community_service.get_community_member(
             community.id, current_user.id
-        )
-        if community_member:
+        ):
             community_service.delete_community_member(community_member)
         flash("Successfully left community.", "primary")
         return redirect(url_for("community.community", name=community.name))

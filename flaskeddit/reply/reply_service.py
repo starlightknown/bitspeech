@@ -6,8 +6,7 @@ def get_reply(reply_id):
     """
     Gets a reply by ID from the database.
     """
-    reply = Reply.query.get(reply_id)
-    return reply
+    return Reply.query.get(reply_id)
 
 
 def create_reply(reply, post, user):
@@ -39,8 +38,7 @@ def get_reply_vote(reply_id, user_id):
     """
     Gets a specific user's vote on a reply the database.
     """
-    reply_vote = ReplyVote.query.filter_by(user_id=user_id, reply_id=reply_id).first()
-    return reply_vote
+    return ReplyVote.query.filter_by(user_id=user_id, reply_id=reply_id).first()
 
 
 def upvote_reply(reply_id, user_id):
