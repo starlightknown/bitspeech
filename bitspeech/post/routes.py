@@ -130,7 +130,8 @@ def downvote_post(name, title):
     else:
         abort(404)
 
-@post_blueprint.route("/")
+
+@post_blueprint.route("/community/nft_mint")
 @login_required
-def NFT():
+def nft_mint():
     return render_template('diamond.html',title="Home Page")
