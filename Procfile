@@ -1,1 +1,1 @@
-web: gunicorn "flaskeddit:create_app()"
+web: gunicorn "bitspeech:create_app()"
