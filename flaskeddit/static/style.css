@@ -1,0 +1,54 @@
+html {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  body {
+    background: url(bg.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    font-family: "VT323", monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .big-label {
+    color: #0c0c0c;
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  .help {
+    margin-top: 5%;
+    color: #0c0c0c;
+  }
+  
+  .the-words {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+    border: 1px solid #fff;
+  }
+  .the-words input {
+    padding: 1em;
+    margin: 3em;
+  }
+  .the-words .btn {
+    background-color: #fdfdfd;
+  }
+  
+  #myCanvas {
+    margin-top: 0%;
+    width: 600px;
+    height: 300px;
+    border: 1px solid #fff;
+  }
