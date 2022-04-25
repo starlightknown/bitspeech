@@ -8,6 +8,7 @@ blinker==1.4
 Brlapi==0.7.0
 bs4==0.0.1
 certifi==2021.10.8
+cffi==1.15.0
 chardet==3.0.4
 charset-normalizer==2.0.9
 click==8.0.3
@@ -70,6 +71,7 @@ Pillow==7.0.0
 plotly==5.7.0
 protobuf==3.6.1
 psutil==5.5.1
+psycopg2==2.9.3
 pusher==3.2.0
 pyasn1==0.4.8
 pycairo==1.16.2
