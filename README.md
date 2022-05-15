@@ -1,7 +1,23 @@
-## Welcome to BitSpeech
-![BitSpeech](https://user-images.githubusercontent.com/74637789/164978852-ea5da94b-7cb0-4ed1-ba93-92b0fedf88d8.gif)
+<h1 align="center"> 🗨️ BitSpeech 🪙 </h1>
 
+<a href="https://github.com/starlightknown/bitspeech"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"></a>
+<a href="https://github.com/starlightknown/bitspeech"><img src="https://img.shields.io/badge/Built%20by-developers%20%3C%2F%3E-0059b3"></a>
+<a href="https://github.com/starlightknown/bitspeech"><img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=yellow"></a>
+<a href="https://github.com/starlightknown/"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?v=103"></a>
 
+## Winner of The Hackconomist
+![image](https://user-images.githubusercontent.com/74637789/168475682-7c96ea89-9367-43a5-8d04-6329269df9ab.png)
+
+<!-- 
+Table of Contents
+=================
+
+  * [Installation](#installation)
+  * [Inspiration](#Inspiration)
+  * [Use Case](#usecase)
+  * [Contribute](#project-setup--contribution-steps)
+  * [License](#license) -->
+  
 # 💡 Inspiration
 
 I thought of social media that focuses on communication, community-based input, interaction, content-sharing, and collaboration. Why not make something which is one step ahead of all the apps currently in the market. BitSpeech also focuses on earning! Let's see how
